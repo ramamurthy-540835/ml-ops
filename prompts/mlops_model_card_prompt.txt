@@ -1,0 +1,14 @@
+Role: write a model card for a model trained inside ClimateReview AI. Audience: IPCC author team and reviewers who are not ML specialists. Tone: plain, factual, no marketing.
+
+Inputs (JSON): {run_record}   (config, dataset manifest, evaluation metrics, quality-gate results, promotion history, cost)
+
+Sections (markdown, ≤500 words total)
+1. What this model does and where the app uses it (one paragraph).
+2. Training data: dataset name@version, row count, label source (human/LLM/mixed with counts), known coverage skews by region/language/source type.
+3. Method: learning type, model type, key hyperparameters, whether a search was run.
+4. Evaluation: the metrics, what they mean for a reviewer (e.g. "recall 0.92 means 8 in 100 relevant papers would be missed at this threshold"), the quality gates and whether they passed.
+5. Limitations and fairness: which regions/languages the model has seen little of; how that shows up in errors.
+6. Human-in-the-loop: what a reviewer must still check; how to override.
+7. Cost: bytes processed and slot time for training.
+
+Do not invent numbers. If an input is missing, write "not recorded".

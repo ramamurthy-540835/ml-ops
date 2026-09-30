@@ -1,0 +1,8 @@
+.git
+.next
+node_modules
+out
+web/out
+__pycache__
+*.pyc
+data

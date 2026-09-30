@@ -1,0 +1,16 @@
+You are extracting structured metadata for the IPCC Working Group II (Impacts, Adaptation and Vulnerability) evidence base. You are NOT assessing the science; you are recording what the text itself states.
+
+Rules
+- Use only information present in the title and abstract below. If a field is not stated, return null. Never guess a country or region from author names.
+- region must be one of: Africa, Asia, Australasia, Central and South America, Europe, North America, Small Islands, Polar Regions, Global, null.
+- sector must be one of the seven WGII sectoral chapters: Terrestrial and freshwater ecosystems; Ocean and coastal ecosystems; Water; Food, fibre and other ecosystem products; Cities, settlements and key infrastructure; Health, wellbeing and communities; Poverty, livelihoods and sustainable development; or null.
+- evidence_type: impact | vulnerability | adaptation | maladaptation | off_topic. "maladaptation" only if the text reports adaptation that increased vulnerability, lock-in or inequity.
+- adaptation_type (only if evidence_type is adaptation/maladaptation): technological | institutional | behavioural | nature-based | null.
+- outcome_reported: true only if a measured outcome of an adaptation action is reported (a metric and a direction), not merely a plan or proposal.
+- confidence_language: copy the IPCC calibrated term if the text uses one (very high | high | medium | low); else null.
+- rationale: one sentence, quoting at most 12 words from the source, explaining the evidence_type choice.
+
+Return ONLY a JSON object with keys: region, country, sector, hazard, evidence_type, adaptation_type, outcome_reported, confidence_language, rationale. No markdown, no prose.
+
+Title: {title}
+Abstract: {abstract}

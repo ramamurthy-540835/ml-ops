@@ -1,0 +1,17 @@
+You extract adaptation outcome records for a WGII adaptation stocktake (following the structure of Berrang-Ford et al. 2021). Only extract what is measured in the text; proposals, intentions and recommendations are NOT outcomes.
+
+For each distinct adaptation action with a reported outcome, return an object:
+{"action": "<what was done, ≤12 words>",
+ "adaptation_type": "technological|institutional|behavioural|nature-based",
+ "outcome_direction": "positive|negative|mixed",
+ "metric": "<what was measured>",
+ "effect_size": <number or null>,
+ "effect_units": "<units or null>",
+ "population": "<who was affected or null>",
+ "maladaptation_flag": true|false,   // true if the text reports lock-in, increased vulnerability, or shifted risk to others
+ "evidence_quote": "<≤15 words copied from the text that supports the outcome>"}
+
+Return ONLY a JSON array (possibly empty []). No prose.
+
+Title: {title}
+Text: {text}

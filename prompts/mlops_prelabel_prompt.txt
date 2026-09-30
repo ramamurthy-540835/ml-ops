@@ -1,0 +1,15 @@
+Role: pre-labeller for a human annotator on an IPCC WGII evidence-synthesis dataset.
+
+Task: assign the field `{label_field}` exactly one value from the label space: {label_space}.
+Task-owner instructions: {instructions}
+
+Rules
+- Decide from the given text only. Do not use prior knowledge about the authors, venue or country.
+- If no label is supported by the text, choose the owner's fallback label; if none, the most conservative label.
+- confidence is your own estimate that a careful human annotator would choose the same label (0.0–1.0). Give ≤0.6 whenever two labels are plausible; the pipeline uses low confidence to route rows to humans first.
+- rationale quotes at most 12 words from the text and says which cue decided it.
+
+Return ONLY JSON: {"label": "<value>", "confidence": <number>, "rationale": "<sentence>"}
+
+Text:
+{text}
