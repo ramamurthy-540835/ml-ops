@@ -60,6 +60,21 @@ python synthetic/load_to_bigquery.py --project ai-ippc --dataset climate_ai --sr
 # 2. BQML (BigQuery console or bq CLI). Set the connection name first:
 for f in bqml/0*.sql; do bq query --use_legacy_sql=false < "$f"; done
 
+# For an app bootstrapped with the screening tables only, install the coverage
+# dashboard views before the full BQML pipeline is available:
+bq query --use_legacy_sql=false < bootstrap_gap_analysis.sql
+
+# To create a provisional, keyword-labelled screening queue for an existing
+# documents/embeddings deployment, run the bootstrap model. Replace its weak
+# labels with reviewer labels before relying on the model for review decisions.
+bq query --use_legacy_sql=false < bootstrap_screening_model.sql
+
+# To populate the Evidence map before metadata extraction and Gemini are set up:
+bq query --use_legacy_sql=false < bootstrap_evidence_map_kmeans.sql
+
+# To satisfy the Living Evidence API before publication years are available:
+bq query --use_legacy_sql=false < bootstrap_living_evidence.sql
+
 # 3. API — mount the router in api.py
 #    from api_ml import router as ml_router; app.include_router(ml_router)
 
