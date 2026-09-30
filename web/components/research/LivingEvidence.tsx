@@ -8,6 +8,7 @@ const STATUS: Record<string, { text: string; cls: string }> = {
   update_now: { text: "Update now", cls: styles.tagCoral },
   watch: { text: "Watch", cls: styles.tagAmber },
   stable: { text: "Stable", cls: styles.tagLichen },
+  insufficient_data: { text: "Needs more years", cls: styles.tagAmber },
 };
 
 export default function LivingEvidence() {
@@ -25,7 +26,7 @@ export default function LivingEvidence() {
 
   if (err) return <div className={styles.error}>{err}</div>;
   if (!data) return <p className={styles.loading}>Loading forecasts…</p>;
-  if (data.alerts.length === 0) return <div className={styles.empty}>No forecasts yet. Run bqml/05_living_evidence_arima.sql after clustering.</div>;
+  if (data.alerts.length === 0) return <div className={styles.empty}>No explicit publication-year metadata is available for clustered documents yet. Add publication-year metadata before forecasting.</div>;
 
   const n = { update_now: 0, watch: 0, stable: 0 } as Record<string, number>;
   data.alerts.forEach((a) => (n[a.update_status] = (n[a.update_status] ?? 0) + 1));
